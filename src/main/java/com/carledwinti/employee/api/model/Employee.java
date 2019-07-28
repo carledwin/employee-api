@@ -2,27 +2,27 @@ package com.carledwinti.employee.api.model;
 
 public class Employee {
 
-	private String id;
+	private Integer id;
 	private String designation;
-	private String name;
+	private String firstName;
 	private Double salary;
 	
 	public Employee() {
 	}
 
-	public Employee(String id, String designation, String name, Double salary) {
+	public Employee(Integer id, String designation, String firstName, Double salary) {
 		super();
 		this.id = id;
 		this.designation = designation;
-		this.name = name;
+		this.firstName = firstName;
 		this.salary = salary;
 	}
 
-	public String getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
@@ -34,12 +34,12 @@ public class Employee {
 		this.designation = designation;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstName() {
+		return firstName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public Double getSalary() {
