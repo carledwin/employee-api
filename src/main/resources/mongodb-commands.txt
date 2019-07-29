@@ -1,0 +1,30 @@
+
+https://www.tutorialspoint.com/mongodb/index.htm
+
+https://docs.mongodb.com/manual/reference/command/
+
+exibir todos os bancos
+show databases
+
+selecionar banco
+use employee
+
+select all
+db.employee.find()
+
+exibe as tabelas do banco
+show collections
+
+select Query
+ db.employee.find({"_id":2, "firstName":"Fulana de Tal"})
+{ "_id" : 2, "_class" : "com.carledwinti.employee.api.model.Employee", "designation" : "Second Employee", "firstName" : "Fulana de Tal", "email" : "fulana@employee.com" }
+
+update
+db.employee.update({"_id":1},{"firstName":"Carl Edwin Antônio Nascimento"});
+
+insert to
+ db.employee.insert({ "_id" : 2, "_class" : "com.carledwinti.employee.api.model.Employee", "designation" : "Second Employee", "firstName" : "Fulana de Tal", "email" : "fulana@employee.com" })
+ 
+ remove
+ db.employee.remove({"_id":2})
+ 
