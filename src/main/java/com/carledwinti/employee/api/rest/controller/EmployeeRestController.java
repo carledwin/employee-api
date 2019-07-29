@@ -3,6 +3,8 @@ package com.carledwinti.employee.api.rest.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.carledwinti.employee.api.repository.EmployeeRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,60 +22,30 @@ import com.carledwinti.employee.api.model.Employee;
 @RequestMapping("/employees")
 public class EmployeeRestController {
 
-	private List<Employee> employees = initialize();
+	private List<Employee> employees = null;
+
+	@Autowired
+	private EmployeeRepository employeeRepository;
 
 	@GetMapping
 	public List<Employee> all(){
-		
-		return employees;
+		return employeeRepository.findAll();
 	}
 	
 	@DeleteMapping("/{id}")
 	public boolean delete(@PathVariable int id) {
-		
-		for(Employee employee : employees)
-			
-			if(employee.getId() == id) {
-				employees.remove(employee);
-				return true;
-			}
-		
-		return false;
+
+		employeeRepository.delete(id);
+		return !employeeRepository.exists(id);
 	}
 	
 	@PostMapping
 	public Employee create(@RequestBody Employee employee){
-		
-		employees.add(employee);
-		return employee;
+		return employeeRepository.save(employee);
 	}
 	
 	@PutMapping
 	public Employee update(@RequestBody Employee employee) {
-		
-		if(employees.contains(employee)) {
-			
-			for(Employee employeeUpdate : employees) {
-				
-				if(employeeUpdate.getId().equals(employee.getId())){
-					
-					employeeUpdate = employee;
-					return employeeUpdate;
-				}
-			}
-		}
-		
-		return null;
-	}
-	
-	private List<Employee> initialize() {
-		
-		if(employees == null) {
-			
-			employees = new ArrayList<>();
-			employees.add(new Employee(0, "First employee", "Fulano de Tal", 5545.78d));
-		}
-		
-		return employees;
+		return employeeRepository.save(employee);
 	}
 }

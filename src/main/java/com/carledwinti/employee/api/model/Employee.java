@@ -1,20 +1,29 @@
 package com.carledwinti.employee.api.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection="employee")
 public class Employee {
 
+	@Id
 	private Integer id;
 	private String designation;
 	private String firstName;
+	@Indexed(unique=true)
+	private String email;
 	private Double salary;
 	
 	public Employee() {
 	}
 
-	public Employee(Integer id, String designation, String firstName, Double salary) {
+	public Employee(Integer id, String designation, String firstName, String email, Double salary) {
 		super();
 		this.id = id;
 		this.designation = designation;
 		this.firstName = firstName;
+		this.email = email;
 		this.salary = salary;
 	}
 
@@ -49,5 +58,9 @@ public class Employee {
 	public void setSalary(Double salary) {
 		this.salary = salary;
 	}
+
+	public String getEmail() { return email; }
+
+	public void setEmail(String email) { this.email = email; }
 	
 }
